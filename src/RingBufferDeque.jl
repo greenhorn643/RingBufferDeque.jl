@@ -93,4 +93,10 @@ function Base.getindex(d::RBDeque{T}, i::Int)::T where T
     return d.buf[idx]
 end
 
+function Base.setindex!(d::RBDeque{T}, v::T, i::Int)::RBDeque{T} where T
+    idx = (i + d.offset - 1) & (d.cap - 1) + 1
+    d.buf[idx] = v
+    return d
+end
+
 end # module
